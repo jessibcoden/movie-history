@@ -27,11 +27,11 @@ const domString = (movieArray, imgConfig) => {
 };
 
 const printToDom = (strang) => {
-	$('#movies').append(strang);
+	$('#searchResults').append(strang);
 };
 
 const clearDom = () => {
-	$('#movies').empty();
+	$('#searchResults').empty();
 };
 
 module.exports = {domString, clearDom};
