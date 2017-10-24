@@ -21,4 +21,29 @@ let authenticateGoogle = () => {
 	});
 };
 
-module.exports = {setKey, authenticateGoogle};
+// GO INTO FIREBASE, DATABASE, RULES and change the following to true:
+// {
+//   "rules": {
+//     ".read": "true",
+//     ".write": "true"
+//   }
+// }
+
+const getMovieList = () => {
+	let movies = [];
+	return new Promise ((resolve, reject) => {
+		$.ajax(`${firebaseKey.databaseURL}/movies.json?orderBy="uid"&equalTo="${userUid}"`).then((fbMovies) => {
+			if(fbMovies != null){
+			Object.keys(fbMovies).forEach((key) => {
+				fbMovies[key].id = key;
+				movies.push(fbMovies[key]);
+			});
+		}
+			resolve(movies);
+		}).catch((err) => {
+			reject(err);
+		});
+	});
+};
+
+module.exports = {setKey, authenticateGoogle, getMovieList};
