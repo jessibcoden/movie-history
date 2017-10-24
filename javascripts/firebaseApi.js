@@ -21,11 +21,14 @@ let authenticateGoogle = () => {
 	});
 };
 
-// GO INTO FIREBASE, DATABASE, RULES and change the following to true:
+// GO INTO FIREBASE, DATABASE, RULES and change it to the following:
 // {
 //   "rules": {
 //     ".read": "true",
-//     ".write": "true"
+//     ".write": "true",
+//       "movies": {
+//         ".indexOn": "uid"
+//       }
 //   }
 // }
 
@@ -35,7 +38,9 @@ const getMovieList = () => {
 		$.ajax(`${firebaseKey.databaseURL}/movies.json?orderBy="uid"&equalTo="${userUid}"`).then((fbMovies) => {
 			if(fbMovies != null){
 			Object.keys(fbMovies).forEach((key) => {
-				fbMovies[key].id = key;
+			// Object.keys returns an array
+				fbMovies[key].id = key;   
+				// Previous line translates to fbMovies["movies0"].id = "movies0"
 				movies.push(fbMovies[key]);
 			});
 		}
