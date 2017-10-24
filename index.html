@@ -4,6 +4,7 @@
 	<title>Movie History</title>
 	
 	<link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.css">
+  <link href="https://fonts.googleapis.com/css?family=Limelight" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./styles/main.css">
 
 </head>
@@ -13,7 +14,7 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-inverse container-fluid">
   <div>
-    <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- Brand and toggle get grouped for mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -26,44 +27,52 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a id="authenticate">Authentication</a></li>
+        <li><a id="authenticate">Sign In</a></li>
         <li><a id="mine">My Movies</a></li>
         <li><a id="navSearch">Search</a></li>
-          </ul>
-        </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 
-
-
-
-
-
-<div id="search" class="text-center row hide">
-  <h1>Search</h1>
-  <!-- SEARCH BAR -->
+<!-- SIGN IN -->
+<div id="authScreen" class="text-center container">
   <div class="row">
-    <div class="input-group input-group-lg col-md-6 col-md-offset-3">
-      <span class="input-group-addon glyphicon glyphicon-search" id="sizing-addon1"></span>
-      <input id="searchBar" type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon1">
+    <h1 class="displayTitle">Sign In</h1>
+    <div>
+        <img id="googleButton" src="./images/google-sign-in.png">
     </div>
-  <div id="searchResults"></div>
   </div>
 </div>
 
-<div id="authScreen" class="text-center row">
-  <h1>Sign In</h1>
-  <button class="btn btn-lg btn-default" id="googleButton">
-    <img src="./images/google-signin.png">
-  </button>
+<!-- MY MOVIES -->
+<div id="myMovies" class="text-center hide container">
+  <div class="row">
+    <h1 class="displayTitle">My Movies</h1>
+    <!-- display for movies watched: -->
+    <div id="moviesMine"></div>
+  </div>
 </div>
 
-<div id="myMovies" class="text-center row hide">
-  <h1>My Movies</h1>
-  <div id="moviesMine"></div>
+<!-- SEARCH -->
+<div id="search" class="text-center hide container">
+  <div class="row">
+    <h1 class="displayTitle">Search</h1>
+    <!-- search bar: -->
+    <div class="row">
+      <div id="seachDiv" class="input-group input-group-lg col-lg-6 col-lg-offset-3">
+        <span class="input-group-addon glyphicon glyphicon-search sizing-addon1"></span>
+        <input id="searchBar" type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon1">
+      </div>
+     <!--  display for serch results: -->
+      <div id="searchResults"></div>
+    </div>
+  </div>
 </div>
+
+
+
+
 
 
 <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>

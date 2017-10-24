@@ -1,2 +1,23 @@
 body {
-  background: url(../images/peerapong.jpg); }
+  background: url(../images/peerapong.jpg) no-repeat fixed center;
+  background-size: auto; }
+
+nav, .displayTitle {
+  font-family: "Limelight", cursive; }
+
+#googleButton {
+  background: url(./images/google-sign-in.png);
+  width: 33%;
+  height: 10%;
+  border-radius: 5px; }
+  #googleButton:hover {
+    box-shadow: 0 0 20px #FBBC05; }
+
+.displayTitle {
+  color: white; }
+
+#googleButton {
+  padding: 0; }
+
+#seachDiv {
+  padding-bottom: 10px; }
