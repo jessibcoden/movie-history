@@ -2,6 +2,18 @@
 	"apiKeys": {
 		"tmdb": {
 			"apiKey": ""
-		}
+		},
+	"firebaseKeys":{
+    "apiKey": "",
+    "authDomain": "",
+    "databaseURL": "",
+    "projectId": "",
+    "storageBucket": "",
+    "messagingSenderId": ""
+  		}
 	}
 }
+
+
+
+
