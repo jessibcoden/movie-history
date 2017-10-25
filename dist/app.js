@@ -36,14 +36,14 @@ const domString = (movieArray, imgConfig, divName) => {
 		if(i % 3 === 0){
 			domString += 	`<div class="row">`;
 		}
-		domString +=		`<div class="col-sm-6 col-md-4">`;
+		domString +=		`<div class="movie col-sm-6 col-md-4">`;
 		domString +=			`<div class="thumbnail">`;
-		domString +=				`<img src="${imgConfig.base_url}/w342/${movieArray[i].poster_path}" alt="">`;
+		domString +=				`<img class="poster_path" src="${imgConfig.base_url}/w342/${movieArray[i].poster_path}" alt="">`;
 		domString +=				 `<div class="caption">`;
-		domString +=				     `<h3>${movieArray[i].title}</h3>`;
-		domString +=				     `<p>${movieArray[i].overview}</p>`;
+		domString +=				     `<h3 class="title">${movieArray[i].title}</h3>`;
+		domString +=				     `<p class="overview">${movieArray[i].overview}</p>`;
 		domString +=				     `<p><a href="#" class="btn btn-primary" role="button">Review</a>`;
-		domString +=					 `<a href="#" class="btn btn-default" role="button"> Watchlist</a></p>`;
+		domString +=					 `<a class="btn btn-default wishlist" role="button"> Wishlist</a></p>`;
 		domString +=				      	`</div>`;
 		domString +=				    `</div>`;
 		domString +=				  `</div>`;
@@ -116,7 +116,25 @@ const googleAuth = () => {
 	});
 };
 
-module.exports = {pressEnter, myLinks, googleAuth};
+const wishListEvents = () => {
+	$('body').on('click', '.wishlist', (e) => {
+		console.log("wishlist event", e);
+		let mommyDiv = e.target.closest('.movie');
+
+		let newMovie = {
+			"title": $(mommyDiv).find('.title').html(),
+			"overview": $(mommyDiv).find('.overview').html(),
+			"poster_path": $(mommyDiv).find('.poster_path').attr('src').split('//').pop(),
+			"rating": 0,
+			"isWatched": false,
+			"uid": ""
+		};
+		console.log("newMovie", newMovie);
+		// firebaseApi.saveMovie().then().catch;
+	});
+};
+
+module.exports = {pressEnter, myLinks, googleAuth, wishListEvents};
 },{"./dom":2,"./firebaseApi":4,"./tmdb":6}],4:[function(require,module,exports){
 "use strict";
 
@@ -182,6 +200,7 @@ apiKeys.retrieveKeys();
 events.myLinks();
 events.googleAuth();
 events.pressEnter();
+events.wishListEvents();
 },{"./apiKeys":1,"./events":3}],6:[function(require,module,exports){
 "use strict";
 
