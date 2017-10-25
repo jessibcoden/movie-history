@@ -66,4 +66,17 @@ const saveMovie = (movie) => {
 	});
 };
 
-module.exports = {setKey, authenticateGoogle, getMovieList, saveMovie};
+const deleteMovie = (movieId) => {
+	return new Promise ((resolve, reject) => {
+		$.ajax({
+			method: "DELETE",
+			url: `${firebaseKey.databaseURL}/movies/${movieId}.json`			
+		}).then((fbMovies) => {
+			resolve(fbMovies);
+		}).catch((err) => {
+			reject(err);
+		});
+	});
+};
+
+module.exports = {setKey, authenticateGoogle, getMovieList, saveMovie, deleteMovie};
