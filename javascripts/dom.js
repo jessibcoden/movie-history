@@ -4,6 +4,7 @@ const domString = (movieArray, imgConfig, divName, search) => {
 	console.log("movie Array", movieArray);
 	let domString = '';
 	for(let i = 0; i < movieArray.length; i++) {
+		console.log("moveie I", movieArray[i]);
 		if(i % 3 === 0){
 			domString += 	`<div class="row">`;
 		}
@@ -11,7 +12,7 @@ const domString = (movieArray, imgConfig, divName, search) => {
 		domString +=			`<div class="thumbnail">`;
 
 		if(!search){
-			domString +=				`<button class="btn btn-default" data-firebase-id="${movieArray[i].id}">X</button>`;
+			domString +=				`<button class="btn btn-default delete" data-firebase-id="${movieArray[i].id}">X</button>`;
 			}
 
 			domString +=				`<img class="poster_path" src="${imgConfig.base_url}/w342/${movieArray[i].poster_path}" alt="">`;
