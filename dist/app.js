@@ -29,7 +29,7 @@ module.exports = {retrieveKeys};
 },{"./firebaseApi":4,"./tmdb":6}],2:[function(require,module,exports){
 "use strict";
 
-const domString = (movieArray, imgConfig, divName) => {
+const domString = (movieArray, imgConfig, divName, search) => {
 	console.log("movie Array", movieArray);
 	let domString = '';
 	for(let i = 0; i < movieArray.length; i++) {
@@ -38,12 +38,23 @@ const domString = (movieArray, imgConfig, divName) => {
 		}
 		domString +=		`<div class="movie col-sm-6 col-md-4">`;
 		domString +=			`<div class="thumbnail">`;
-		domString +=				`<img class="poster_path" src="${imgConfig.base_url}/w342/${movieArray[i].poster_path}" alt="">`;
-		domString +=				 `<div class="caption">`;
-		domString +=				     `<h3 class="title">${movieArray[i].title}</h3>`;
-		domString +=				     `<p class="overview">${movieArray[i].overview}</p>`;
-		domString +=				     `<p><a class="btn btn-primary review" role="button">Review</a>`;
-		domString +=					 `<a class="btn btn-default wishlist" role="button"> Wishlist</a></p>`;
+
+		if(!search){
+			domString +=				`<button class="btn btn-default" data-firebase-id="${movieArray[i].id}">X</button>`;
+			}
+
+			domString +=				`<img class="poster_path" src="${imgConfig.base_url}/w342/${movieArray[i].poster_path}" alt="">`;
+			domString +=				 `<div class="caption">`;
+			domString +=				     `<h3 class="title">${movieArray[i].title}</h3>`;
+			domString +=				     `<p class="overview">${movieArray[i].overview}</p>`;
+
+		if(search){
+
+			domString +=				     `<p><a class="btn btn-primary review" role="button">Review</a>`;
+			domString +=					 `<a class="btn btn-default wishlist" role="button"> Wishlist</a></p>`;
+		} else {
+			domString +=					`<p>Rating: ${movieArray[i].rating}</p>`;
+		}
 		domString +=				      	`</div>`;
 		domString +=				    `</div>`;
 		domString +=				  `</div>`;
@@ -93,7 +104,7 @@ const myLinks = () => {
 		} else if (e.target.id === 'mine') {
 			firebaseApi.getMovieList().then((results) =>{
 				dom.clearDom('moviesMine');
-				dom.domString(results, tmdb.getImgConfig(), 'moviesMine');
+				dom.domString(results, tmdb.getImgConfig(), 'moviesMine', false);
 			}).catch((err) =>{
 				console.log("error in getMovieList", err);
 			});
@@ -300,7 +311,7 @@ const setKey = (apiKey) => {
 
 const showResults = (movieArray) => {
 	dom.clearDom('searchResults');
-	dom.domString(movieArray, imgConfig, 'searchResults');
+	dom.domString(movieArray, imgConfig, 'searchResults', true);
 };
 
 const getImgConfig = () => {

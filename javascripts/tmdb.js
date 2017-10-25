@@ -55,7 +55,7 @@ const setKey = (apiKey) => {
 
 const showResults = (movieArray) => {
 	dom.clearDom('searchResults');
-	dom.domString(movieArray, imgConfig, 'searchResults');
+	dom.domString(movieArray, imgConfig, 'searchResults', true);
 };
 
 const getImgConfig = () => {
